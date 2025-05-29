@@ -5,7 +5,7 @@
 // Example: Use server endpoint to proxy OpenAI requests for safety, not direct API key in client.
 // Fill out with a fetch-based call for prompt completion integration.
 
-// If you need NodeJS compat, install node-fetch and polyfill here.
+// If you ed NodeJS compat, install node-fetch and polyfill here.
 // For browser code, fetch will be available.
 
 export async function fetchAICompletion(prompt) {
