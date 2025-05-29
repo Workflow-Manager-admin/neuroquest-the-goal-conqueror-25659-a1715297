@@ -1,0 +1,4 @@
+{
+    "command": "npm install && npm run build",
+    "working_directory": "/home/kavia/workspace/code-generation/neuroquest-the-goal-conqueror-25659-a1715297/neuroquest"
+}
