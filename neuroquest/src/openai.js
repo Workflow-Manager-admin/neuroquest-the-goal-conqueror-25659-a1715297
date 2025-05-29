@@ -58,7 +58,9 @@ export async function fetchAICompletion(goalText) {
     try {
       const errdata = await resp.json();
       msg += ": " + (errdata?.error?.message || resp.statusText);
-    } catch {}
+    } catch (e) {
+      // If error occurs parsing error JSON, just throw the default message.
+    }
     throw new Error(msg);
   }
   const data = await resp.json();
