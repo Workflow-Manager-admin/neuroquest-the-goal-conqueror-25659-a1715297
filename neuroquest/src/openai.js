@@ -1,22 +1,32 @@
 /* global fetch */
-/*
-  OpenAI GPT API client, securely loading config from environment variables.
-
-  In Vite, all secrets belong in .env files (never hardcoded)! Use VITE_OPENAI_API_KEY.
-  This module provides fetchAICompletion to get breakdowns for user-entered goals.
-
-  Note: Consider proxying requests server-side in production so openai key isn't exposed.
-*/
+/**
+ * OpenAI GPT API client.
+ * - Loads config exclusively from environment variables using Vite's import.meta.env
+ * - Never exposes any secret in code or version control!
+ * - Use VITE_OPENAI_API_KEY in your .env[.mode] file.
+ *
+ * SECURITY: Never commit your real OpenAI or Firebase secrets.
+ *
+ * API Key and endpoint are set via environment. In production, you should proxy requests
+ * server-side to further protect the OpenAI key—and rate limit/validate.
+ */
 
 // PUBLIC_INTERFACE
+/**
+ * Fetches an AI breakdown of a major goal using OpenAI's ChatGPT API
+ * @param {string} goalText The user's main goal or quest
+ * @returns {Promise<string>} AI-generated breakdown, grouped under Main Questline, Weekly Side Quests, Daily Microtasks
+ */
 export async function fetchAICompletion(goalText) {
-  // Loads config from Vite environment variables
+  // Load from .env file (via Vite).
   const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
-  const apiUrl =
-    import.meta.env.VITE_OPENAI_API_BASE_URL || "https://api.openai.com/v1/chat/completions";
-  if (!apiKey) throw new Error("OpenAI API key not configured in .env file.");
+  const apiUrl = import.meta.env.VITE_OPENAI_API_BASE_URL || "https://api.openai.com/v1/chat/completions";
 
-  // We use OpenAI's Chat endpoint for smart breakdown (GPT-3.5/4)
+  if (!apiKey || !apiKey.trim()) {
+    throw new Error("OpenAI API key not configured in your .env file! Add VITE_OPENAI_API_KEY.");
+  }
+
+  // Compose chat message payload per OpenAI docs
   const completionParams = {
     model: "gpt-3.5-turbo",
     messages: [
@@ -43,9 +53,14 @@ export async function fetchAICompletion(goalText) {
     body: JSON.stringify(completionParams),
   });
 
-  if (!resp.ok) throw new Error("AI completion failed");
+  if (!resp.ok) {
+    let msg = "[AI completion failed]";
+    try {
+      const errdata = await resp.json();
+      msg += ": " + (errdata?.error?.message || resp.statusText);
+    } catch {}
+    throw new Error(msg);
+  }
   const data = await resp.json();
-
-  // Returns breakdown text only
   return data?.choices?.[0]?.message?.content?.trim();
 }
