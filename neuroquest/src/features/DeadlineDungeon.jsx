@@ -17,8 +17,13 @@ import { Lottie } from "../lottieEntry";
  * - Colorful card zones, rich accent gradients, animated transitions.
  */
 
-import lottieConfetti from "../assets/lottie_confetti.json"; // Placeholder (must exist or be replaced as needed)
-import lottieDelete from "../assets/lottie_delete.json"; // Placeholder, see above
+/* Lottie animation JSON would be imported here if available:
+import lottieConfetti from "../assets/lottie_confetti.json";
+import lottieDelete from "../assets/lottie_delete.json";
+*/
+// To avoid build error if these files do not exist, set to null:
+const lottieConfetti = null;
+const lottieDelete = null;
 
 function DeadlineDungeon() {
   const [events, setEvents] = useState([]);
