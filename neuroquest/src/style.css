@@ -94,3 +94,47 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* --- NEUROQUEST RPG FANTASY-FUTURISTIC EXTENSIONS --- */
+:root {
+  --color-primary: #7c3aed;
+  --color-secondary: #0f172a;
+  --color-accent: #4ade80;
+}
+
+.neon-text {
+  text-shadow:
+      0 0 4px var(--color-primary),
+      0 0 12px var(--color-primary),
+      0 0 2px #fff,
+      1px 1px 2px #3335;
+}
+.neon-glow {
+  box-shadow:
+    0 0 18px 5px var(--color-primary),
+    0 0 4px 0px var(--color-accent),
+    0 0 2px #fff;
+}
+.neon-glow-bar {
+  box-shadow:
+    0 0 16px 2px var(--color-accent),
+    0 0 3px 0px #67e8f9c0;
+}
+
+.shadow-neon {
+  box-shadow: 0 0 12px 2px var(--color-primary), 0 0 2px #4ade8099;
+}
+
+.text-primary {
+  color: var(--color-primary) !important;
+}
+.text-accent {
+  color: var(--color-accent) !important;
+}
+.bg-accent {
+  background: var(--color-accent) !important;
+}
+
+.font-fantasy {
+  font-family: 'Cinzel Decorative', 'IM Fell English SC', 'Cinzel', serif;
+}
