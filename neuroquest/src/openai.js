@@ -1,3 +1,4 @@
+/* global fetch */
 /*
   OpenAI GPT API client, securely loading config from environment variables.
 
