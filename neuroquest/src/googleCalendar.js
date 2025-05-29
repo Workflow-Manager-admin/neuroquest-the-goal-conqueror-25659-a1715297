@@ -1,4 +1,5 @@
 /* global window */
+/* eslint-env browser */
 /*
   Google Calendar API utility: loads config from Vite .env (never hardcodes keys).
   Handles authentication, event sync, and API calls. See usage in DeadlineDungeon.
@@ -144,4 +145,3 @@ export async function deleteCalendarEvent(eventId) {
     eventId,
   });
 }
-
