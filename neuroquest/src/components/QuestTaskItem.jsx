@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Player } from "../lottieEntry";
+import { Lottie } from "../lottieEntry";
 
 /**
  * QuestTaskItem
@@ -111,7 +111,7 @@ function QuestTaskItem({
       {/* Lottie confetti animation */}
       {justCompleted && !!lottieSuccessSrc && (
         <span className="absolute right-1 top-1 z-10 pointer-events-none" style={{ width: 60, height: 60 }}>
-          <Player src={lottieSuccessSrc} autoplay loop={false} style={{height:60, width:60}} speed={1.4} />
+          <Lottie animationData={lottieSuccessSrc} autoplay loop={false} style={{height:60, width:60}} speed={1.4} />
         </span>
       )}
     </div>
