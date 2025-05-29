@@ -4,9 +4,18 @@
   Google Calendar API utility: loads config from Vite .env (never hardcodes keys).
   Handles authentication, event sync, and API calls. See usage in DeadlineDungeon.
 
+  SECURITY: NEVER hardcode or commit Google credentials, client IDs, keys, or OAuth secrets in this file or anywhere under git source control!
+  All required config must only be stored in `.env` or environment variables, excluded from git via .gitignore.
+
   Required .env keys:
     VITE_GOOGLE_API_KEY
     VITE_GOOGLE_CLIENT_ID
+
+  See the .env.example file for details on setting up these variables securely.
+  Create your own Google API Credential through Google Cloud Console:
+    https://console.cloud.google.com/apis/credentials
+
+  If deploying, set these as environment variables—not in any checked-in file!
 */
 
 const GOOGLE_DISCOVERY_DOCS = [
